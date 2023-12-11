@@ -14,18 +14,18 @@ def get_training_data():
     for i, data in enumerate(training):
         trY[i] = float(data[0])
 
-    # 디버깅용 1
+    # # 디버깅용 1
     # print("trX", trX, "trY", trY) # trX[i]는 학습 데이터, trY[i]는 학습 데이터 라벨
     # print()
     # for i in trX:
-    #     # 데이터를 16x16으로 재배열
-    #     reshaped_data = np.array(i).reshape((16, 16))
+    # #     # 데이터를 16x16으로 재배열
+    #      reshaped_data = np.array(i).reshape((16, 16))
     # print(trX.shape)
 
-    # 디버깅용 2
+    # # 디버깅용 2
     # for i in range(0, len(trX)):
-    #     print(np.array(trX[i]).reshape((16, 16)))
-    #     print(trY[i])
+    #      print(np.array(trX[i]).reshape((16, 16)))
+    #      print(trY[i])
     # return trX, trY
 
 def get_test_data():
