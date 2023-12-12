@@ -1,17 +1,23 @@
 import serial
 import time
 
-ser = serial.Serial("/dev/serial/by-id/usb-Arduino_Srl_Arduino_Uno_7543931373735161F152-if00", 9600)
+ser = serial.Serial("/dev/cu.usbmodem143301", 9600)
 speed = 0
-
+i = 0
 while(True):
-    if speed % 2 == 0:
-        cmd = ("R%d\n" % speed).encode('ascii')
-        print("My cmd is %s" % cmd)
+    if i % 2 == 0:
+        cmd = ("R%f\n"%0.3).encode('ascii')
+        ser.write(cmd)
+        print("turn right")
+    elif i % 3 == 0:
+        cmd = ("L%f\n"%0.3).encode('ascii')
+        ser.write(cmd)
+        print("turn left")
     else:
-        cmd = ("L%d\n" % speed).encode('ascii')
-        print("My cmd is %s" % cmd)
-    ser.write(cmd)
+        cmd = ("G\n").encode('ascii')
+        ser.write(cmd)
+        print("go straight")
+    time.sleep(1)
     read_serial=ser.readline()
     print(read_serial)
-    speed = speed + 1
+    i = i + 1

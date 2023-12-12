@@ -24,15 +24,19 @@ class Interface():
         self.ser.write(self.cmd)
     
     def stop_at_qr_code(self):
-        self.cmd = ("R0\nL0\n").encode('ascii')
+        self.cmd = ("S\n").encode('ascii')
         time.sleep(5)
 
-    def set_right_speed(self, speed):
-        self.cmd = ("R%d\n" %speed).encode('ascii')
+    def turn_right(self, speed):
+        self.cmd = ("R%f\n" %speed).encode('ascii')
         self.ser.write(self.cmd)
     
-    def set_left_speed(self, speed):
-        self.cmd = ("L%d\n" %speed).encode('ascii')
+    def turn_left(self, speed):
+        self.cmd = ("L%f\n" %speed).encode('ascii')
+        self.ser.write(self.cmd)
+    
+    def go_straight(self):
+        self.cmd = ("G\n").encode('ascii')
         self.ser.write(self.cmd)
     
     def get_image_from_camera(self):

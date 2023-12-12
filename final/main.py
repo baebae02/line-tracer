@@ -4,6 +4,9 @@ import time
 import cv2
 import tensorflow as tf
 
+TURN_LEFT = -1
+TURN_RIGHT = 1
+GO_STRAIGHT = 0
 class Main:
 
 	def __init__(self):
@@ -11,7 +14,7 @@ class Main:
 		self.model = tf.keras.models.load_model('/Users/josua/Desktop/sua/1_uos/0_cs/3-2/임베/line-tracer/trained_model.h5')
 		self.interface.set_left_speed(0)
 		self.interface.set_right_speed(0)
-
+		sel
 		self.velocity = 0
 		self.direction = 0
 
@@ -26,9 +29,13 @@ class Main:
 		else:
 			right_speed = 1.0-direction
 			left_speed = 1.0
-		
-		self.interface.set_right_speed(right_speed)
-		self.interface.set_left_speed(left_speed)
+		if right_speed > left_speed:
+			self.interface.turn_right(right_speed)
+		elif left_speed > right_speed:
+			self.interface.turn_left(left_speed)
+		else:
+			self.interface.go_straight()
+
 	
 	def drive(self):
 		while True:
